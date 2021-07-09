@@ -5,7 +5,7 @@ r = "%.2f"                                                                  # Th
 
 class Window():                                                             #TODO Pygame Window settings.
     def __init__(self):
-        pygame.display.set_caption(f"Clicker Game - Score: {r % sc.score}") # Adds caption to the Window.
+        pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}") # Adds caption to the Window.
         self.res = (800, 600)                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
         self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res
         pygame.init()                                                       # Initialises Pygame Window.
