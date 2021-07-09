@@ -64,8 +64,9 @@ class GPUValue():
     def __objectValue__(self):
         self.gpu = 0
 
-    def __upgradeMValue__(self):
-        self.a = 3
+    def __upgradeMValue__(self): #TODO This section could be made into it's own class to be used with every xValue().
+        self.a = 3  # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
+        self.b = 4
 
     def __upgradeModifier__(self):
         self.gpus = 1
