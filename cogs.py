@@ -6,7 +6,6 @@ r = "%.2f"
 
 class Window():
     def __init__(self):
-        sc = Score()
         pygame.display.set_caption(f"Clicker Game - Score: {r % sc.score}")
         self.res = (800, 600)
         self.screen = pygame.display.set_mode(self.res)
