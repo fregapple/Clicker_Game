@@ -31,7 +31,7 @@ class Score():                                                              #TOD
         pygame.display.set_caption(f"Clicker Game - Score: {r % self.score}")      
     
 
-class Time():                                                               # Time settings for time based events
+class Time():                                                               # Time settings for time based events.
 
     def __init__(self):
         self.time_delay = 100
