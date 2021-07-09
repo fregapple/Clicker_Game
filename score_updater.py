@@ -3,7 +3,7 @@ import pygame
 from cogs import *
 
 
-# These functions do the Math on Upgrades / Quantites.
+# These functions do the Math on Upgrades / Quantites..
 
 def GPUs():
     sc.score = sc.score + (gv.gpu * gv.gpus)

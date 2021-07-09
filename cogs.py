@@ -21,7 +21,7 @@ class Window():                                                             #TOD
     def refresh(self):                                                      # Call this to refresh display.
         pygame.display.flip()                                               
     
-class Score():                                                              #TODO Game Score
+class Score():                                                              #TODO Game Score.
     
     def __init__(self):                                                     # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
         self.score = 0
@@ -39,7 +39,7 @@ class Time():                                                               # Ti
         pygame.time.set_timer(self.timer_event, self.time_delay)
  
 
-class ClickValue():                                                         #TODO Click Value settings
+class ClickValue():                                                         #TODO Click Value settings.
     def __init__(self):                                                     # Initialises functions to be used straight away without being called.
         ClickValue.__objectValue__(self)
         ClickValue.__upgradeModifier__(self)
@@ -67,7 +67,7 @@ class GPUValue():                                                           #TOD
         self.a = 3                                                          # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
         self.b = 4                                                          # If kept to individual classes, each xValue can have individual upgrade multiplier paths rather than a global one.
 
-    def __upgradeModifier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have
+    def __upgradeModifier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
         self.gpus = 1
 
     def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
@@ -75,7 +75,7 @@ class GPUValue():                                                           #TOD
 
 
 
-s = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE 
+s = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
 sc = Score()
 clv = ClickValue()
 gv = GPUValue()
