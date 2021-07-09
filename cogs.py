@@ -55,7 +55,7 @@ class ClickValue():                                                         #TOD
         self.click = self.click + 1
 
 
-class GPUValue():                                                           #TODO GPU Value settings.
+class GPUValue():                                                           #TODO GPU Value settings. 
     def __init__(self):
         GPUValue.__objectValue__(self)
         GPUValue.__upgradeModifier__(self)
