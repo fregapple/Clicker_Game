@@ -7,10 +7,10 @@ class Window():                                                             #TOD
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}") # Adds caption to the Window.
         self.res = (800, 600)                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
-        self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res
+        self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res.
         pygame.init()                                                       # Initialises Pygame Window.
         self.display = 1                                                    # Value to keep Pygame Window running.
-        self.clock = pygame.time.Clock()                                    # Sets Clock so we can have ingame timer and FPS
+        self.clock = pygame.time.Clock()                                    # Sets Clock so we can have ingame timer and FPS.
 
     def resize (self):                                                      #TODO Will work on this section once I have added the config file that saves the Resolution.
         pass
@@ -70,7 +70,7 @@ class GPUValue():                                                           #TOD
     def __upgradeModifier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have
         self.gpus = 1
 
-    def gpuBuy(self):                                                       # Buying extra GPUs #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
+    def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
         self.gpu = self.gpu + 0.01
 
 
