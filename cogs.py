@@ -42,12 +42,12 @@ class Time():                                                               # Ti
 class ClickValue():                                                         #TODO Click Value settings.
     def __init__(self):                                                     # Initialises functions to be used straight away without being called.
         ClickValue.__objectValue__(self)
-        ClickValue.__upgradeModifier__(self)
+        ClickValue.__upgradeQuantity__(self)
     
     def __objectValue__(self):                                              # The Value of a click EG how many points it will give.
         self.click = 1
 
-    def __upgradeModifier__(self):                                          # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
+    def __upgradeQuantity__(self):                                          # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
         self.clicks = 1
 
     def clickBuy(self):                                                     # Buying extra clicks #TODO Same as above, this will probably be deleted. Instead we will use an upgrade multiplier. In for testing.
@@ -58,16 +58,16 @@ class GPUValue():                                                           #TOD
     def __init__(self):
         GPUValue.__objectValue__(self)
         GPUValue.__upgradeModifier__(self)
-        GPUValue.__upgradeMValue__(self)       
+        GPUValue.__upgradeQuantity__(self)       
 
     def __objectValue__(self):
         self.gpu = 0
 
-    def __upgradeMValue__(self):                                            #TODO This section could be made into it's own class to be used with every xValue().
+    def __upgradeModifier__(self):                                            #TODO This section could be made into it's own class to be used with every xValue().
         self.a = 3                                                          # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
         self.b = 4                                                          # If kept to individual classes, each xValue can have individual upgrade multiplier paths rather than a global one.
 
-    def __upgradeModifier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
+    def __upgradeQuantity__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
         self.gpus = 1
 
     def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
