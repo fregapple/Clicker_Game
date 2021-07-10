@@ -1,2 +1,1 @@
-start cmd /k start-ssh-agent
-code
+cmd /k start-ssh-agent
