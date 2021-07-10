@@ -1,1 +1,1 @@
-start cmd /k git push
+cmd /c start-ssh-agent & code
