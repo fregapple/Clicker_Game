@@ -1,7 +1,7 @@
 import pygame, sys, os
 from pygame import HWSURFACE, DOUBLEBUF, RESIZABLE
 
-r = "%.2f"                                                                  # This rounds the decimal to Two.
+r = "%.2f"                                                                  # This rounds the decimal to Two
 
 class Window():                                                             #TODO Pygame Window settings.
     def __init__(self):
