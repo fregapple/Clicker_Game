@@ -6,10 +6,9 @@ from score_updater import *
 
 """
 Trying to figure out how we should build the GUI.
-Perhaps incorperating TKinter is an option, however functional, it is quite ugly.. git test attempt two!!!
+Perhaps incorperating TKinter is an option, however functional, it is quite ugly.
 """
 
-# git test
 
 def __main__():
 
