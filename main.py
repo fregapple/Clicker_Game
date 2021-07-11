@@ -12,8 +12,6 @@ Perhaps incorperating TKinter is an option, however functional, it is quite ugly
 def __main__():
 
     while s.display == 1:
-        print(r % sc.score)
-
 
         for x in pygame.event.get():
             if x.type == QUIT:

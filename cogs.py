@@ -21,13 +21,13 @@ ConfigFile()
 class Window():                                                                          #TODO Pygame Window settings.
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}")         # Adds caption to the Window.
-        self.res = Resolution().res                                                      #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
+        self.res = Resolution().res                                                      # Links to Resolution Class that defines the screen size.
         self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) # Sets the resolution based on self.res. 
         pygame.init()                                                                    # Initialises Pygame Window.
         self.display = 1                                                                 # Value to keep Pygame Window running.
         self.clock = pygame.time.Clock()                                                 # Sets Clock so we can have ingame timer and FPS.
 
-    def resize(self):                                                                   # Resizes the screen and saves the changed value to config.txt. This then allows to dynamically change and scale objects and text on the screen.
+    def resize(self):                                                                    # Resizes the screen and saves the changed value to config.txt. This then allows to dynamically change and scale objects and text on the screen.
         self.s = pygame.display.get_surface()
         self.w = self.s.get_width()
         self.h = self.s.get_height()
@@ -45,13 +45,13 @@ class Window():                                                                 
     def reso(self):
         self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) 
 
-    def tick(self, fps):                                                    # Call this to adjust FPS. Though probably won't be called again past what is initially set.
+    def tick(self, fps):                                                                # Call this to adjust FPS. Though probably won't be called again past what is initially set.
         self.clock.tick(fps)
 
-    def refresh(self):                                                      # Call this to refresh display.
+    def refresh(self):                                                                  # Call this to refresh display.
         pygame.display.flip() 
 
-class Resolution():
+class Resolution():                                                         
     def __init__(self):
         Resolution.__call__(self)
 
@@ -96,8 +96,9 @@ class Text():
         self.text = texts.render(self.text, self.antialias, self.colour, self.background)
 
     def scoreText(self):
-        y = pygame.display.set_mode((Resolution().res), HWSURFACE|DOUBLEBUF|RESIZABLE)
-        y.blit(self.text, (Resolution().sw/2,Resolution().sh/2))
+        self.text_rect = self.text.get_rect(center=(Resolution().sw/2, Resolution().sh/2))
+        pygame.display.set_mode((Resolution().res), HWSURFACE|DOUBLEBUF|RESIZABLE).blit(self.text, self.text_rect)
+        s.refresh()       
 
 class Time():                                                               # Time settings for time based events.
 
