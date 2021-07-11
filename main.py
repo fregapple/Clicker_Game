@@ -1,4 +1,4 @@
-import pygame, sys, os, configparser, tkinter.filedialog
+import pygame, sys, os
 
 from pygame.locals import *
 from cogs import *
@@ -20,6 +20,9 @@ def __main__():
                 s.display = 0
                 quit()
 
+            elif x.type == VIDEORESIZE:
+                s.resize()
+
             elif x.type == MOUSEBUTTONDOWN:
                 CLICKs()
             
@@ -32,13 +35,14 @@ def __main__():
 
             elif x.type == t.timer_event:
                 GPUs()
-                Text('arial', 50, f'Score - {r % sc.score}', True, (0,0,255), False).scoreText()
+                
                 
 
                 
                 
         
         s.tick(60)
+        Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
         s.refresh()
 
 __main__()

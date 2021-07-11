@@ -1,0 +1,4 @@
+[Display Settings]
+resolution width = 1649
+resolution height = 1197
+

@@ -1,22 +1,49 @@
-import pygame, sys, os
+import pygame, sys, os, configparser
 from pygame import HWSURFACE, DOUBLEBUF, RESIZABLE
+from pathlib import Path
 
 r = "%.2f"                                                                  # This rounds the decimal to Two.
 
-class Window():                                                             #TODO Pygame Window settings.
+
+class ConfigFile():                                                                     #TODO Config File Creation
     def __init__(self):
-        pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}") # Adds caption to the Window.
-        self.res = Resolution().res                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
-        self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res.
-        pygame.init()                                                       # Initialises Pygame Window.
-        self.display = 1                                                    # Value to keep Pygame Window running.
-        self.clock = pygame.time.Clock()                                    # Sets Clock so we can have ingame timer and FPS.
+        self.configF = Path("./config.txt")
+        if self.configF.is_file():                                                      # Checks to see if the file exists
+            None                                                                        # If it exists, nothing happens
 
-    def resize(self):                                                      #TODO Will work on this section once I have added the config file that saves the Resolution.
-        pass
+        else:
+            self.config = configparser.ConfigParser()                                   # If it doesn't exist, it creates it with default values #TODO Potential to also include Score and other Values to implement a Save Game feature.
+            self.config['Display Settings'] = {'Resolution Width': 800,
+                                               'Resolution Height': 600,}
+            with open("./config.txt", "w") as self.configfile:
+                self.config.write(self.configfile)
+ConfigFile()
+class Window():                                                                          #TODO Pygame Window settings.
+    def __init__(self):
+        pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}")         # Adds caption to the Window.
+        self.res = Resolution().res                                                      #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
+        self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) # Sets the resolution based on self.res. 
+        pygame.init()                                                                    # Initialises Pygame Window.
+        self.display = 1                                                                 # Value to keep Pygame Window running.
+        self.clock = pygame.time.Clock()                                                 # Sets Clock so we can have ingame timer and FPS.
 
-    def res(self):
-        self.screen = pygame.display.set_mode(self.res) 
+    def resize(self):                                                                   # Resizes the screen and saves the changed value to config.txt. This then allows to dynamically change and scale objects and text on the screen.
+        self.s = pygame.display.get_surface()
+        self.w = self.s.get_width()
+        self.h = self.s.get_height()
+        self.config = configparser.ConfigParser()
+        self.config.read("./config.txt")
+        self.config.set('Display Settings', 'resolution width', f'{self.w}')
+        self.config.set('Display Settings', 'resolution height', f'{self.h}')
+        with open("./config.txt", "w") as self.configfile:
+            self.config.write(self.configfile)
+            self.config.read("./config.txt")
+            self.ds = self.config['Display Settings']
+            self.sw = int(self.ds['resolution width'])
+            self.sh = int(self.ds['resolution height'])
+            
+    def reso(self):
+        self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) 
 
     def tick(self, fps):                                                    # Call this to adjust FPS. Though probably won't be called again past what is initially set.
         self.clock.tick(fps)
@@ -29,10 +56,23 @@ class Resolution():
         Resolution.__call__(self)
 
     def __call__(self):
-        self.res = (800,600)
-        
-                                         
+        self.config = configparser.ConfigParser()
+        self.config.read("./config.txt")
+        self.ds = self.config['Display Settings']
+        self.sw = int(self.ds['resolution width'])
+        self.sh = int(self.ds['resolution height'])
+        self.res = (self.sw,self.sh)
 
+class Colours():
+    def __init__(self):
+        self.black = (0,0,0)
+        self.white = (255,255,255)
+        self.red = (255,0,0)
+        self.blue = (0,0,255)
+        self.green = (0,255,0)
+        self.purple = (255,0,255)
+        self.yellow = (255,255,0)
+        
 class Score():                                                              #TODO Game Score.
     
     def __init__(self):                                                     # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
@@ -50,14 +90,14 @@ class Text():
         self.size = size
         self.text = text
         self.antialias = antialias
-        self.colour = (0,0,255)
+        self.colour = colour
         self.background = background
         texts = pygame.font.SysFont(self.font, self.size)
         self.text = texts.render(self.text, self.antialias, self.colour, self.background)
 
     def scoreText(self):
-        y = pygame.display.set_mode((Resolution().res))
-        y.blit(self.text, (800/2,600/2))
+        y = pygame.display.set_mode((Resolution().res), HWSURFACE|DOUBLEBUF|RESIZABLE)
+        y.blit(self.text, (Resolution().sw/2,Resolution().sh/2))
 
 class Time():                                                               # Time settings for time based events.
 
@@ -108,6 +148,7 @@ sc = Score()
 clv = ClickValue()
 gv = GPUValue()
 t = Time()
+c = Colours()
     
 
 
