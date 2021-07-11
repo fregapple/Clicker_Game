@@ -1,4 +1,0 @@
-[Display Settings]
-resolution width = 549
-resolution height = 768
-
