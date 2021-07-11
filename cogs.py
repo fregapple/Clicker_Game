@@ -6,21 +6,33 @@ r = "%.2f"                                                                  # Th
 class Window():                                                             #TODO Pygame Window settings.
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}") # Adds caption to the Window.
-        self.res = (800, 600)                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
+        self.res = Resolution().res                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
         self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res.
         pygame.init()                                                       # Initialises Pygame Window.
         self.display = 1                                                    # Value to keep Pygame Window running.
         self.clock = pygame.time.Clock()                                    # Sets Clock so we can have ingame timer and FPS.
 
-    def resize (self):                                                      #TODO Will work on this section once I have added the config file that saves the Resolution.
+    def resize(self):                                                      #TODO Will work on this section once I have added the config file that saves the Resolution.
         pass
+
+    def res(self):
+        self.screen = pygame.display.set_mode(self.res) 
 
     def tick(self, fps):                                                    # Call this to adjust FPS. Though probably won't be called again past what is initially set.
         self.clock.tick(fps)
 
     def refresh(self):                                                      # Call this to refresh display.
-        pygame.display.flip()                                               
-    
+        pygame.display.flip() 
+
+class Resolution():
+    def __init__(self):
+        Resolution.__call__(self)
+
+    def __call__(self):
+        self.res = (800,600)
+        
+                                         
+
 class Score():                                                              #TODO Game Score.
     
     def __init__(self):                                                     # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
@@ -28,8 +40,24 @@ class Score():                                                              #TOD
 
     def __call__(self):                                                     # Call this to get score and refresh Window Caption to new Value.
         self.score
-        pygame.display.set_caption(f"Clicker Game - Score: {r % self.score}")      
+        pygame.display.set_caption(f"Clicker Game - Score: {r % self.score}")  
+
+class Text():
     
+    def __init__(self, font, size, text, antialias, colour, background):
+        pygame.font.init()
+        self.font = font
+        self.size = size
+        self.text = text
+        self.antialias = antialias
+        self.colour = (0,0,255)
+        self.background = background
+        texts = pygame.font.SysFont(self.font, self.size)
+        self.text = texts.render(self.text, self.antialias, self.colour, self.background)
+
+    def scoreText(self):
+        y = pygame.display.set_mode((Resolution().res))
+        y.blit(self.text, (800/2,600/2))
 
 class Time():                                                               # Time settings for time based events.
 

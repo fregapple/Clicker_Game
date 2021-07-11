@@ -12,3 +12,4 @@ def GPUs():
 def CLICKs():
     sc.score = sc.score + (clv.click * clv.clicks)
     sc.__call__()
+
