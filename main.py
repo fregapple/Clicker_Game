@@ -1,4 +1,4 @@
-import pygame, sys, os
+import pygame, sys, os, configparser, tkinter.filedialog
 
 from pygame.locals import *
 from cogs import *
@@ -8,7 +8,6 @@ from score_updater import *
 Trying to figure out how we should build the GUI.
 Perhaps incorperating TKinter is an option, however functional, it is quite ugly.
 """
-
 
 def __main__():
 
@@ -33,11 +32,13 @@ def __main__():
 
             elif x.type == t.timer_event:
                 GPUs()
+                Text('arial', 50, f'Score - {r % sc.score}', True, (0,0,255), False).scoreText()
+                
+
                 
                 
         
         s.tick(60)
-    
-    s.refresh()
+        s.refresh()
 
 __main__()
