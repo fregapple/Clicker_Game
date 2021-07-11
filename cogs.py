@@ -6,7 +6,7 @@ r = "%.2f"                                                                  # Th
 class Window():                                                             #TODO Pygame Window settings.
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}") # Adds caption to the Window.
-        self.res = (800, 600)                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
+        self.res = Resolution().res                                               #TODO Would like to create a config file that can change Resolutions, like in my emulator, rather than being static.
         self.screen = pygame.display.set_mode(self.res)                     # Sets the resolution based on self.res.
         pygame.init()                                                       # Initialises Pygame Window.
         self.display = 1                                                    # Value to keep Pygame Window running.
@@ -19,7 +19,14 @@ class Window():                                                             #TOD
         self.clock.tick(fps)
 
     def refresh(self):                                                      # Call this to refresh display.
-        pygame.display.flip()                                               
+        pygame.display.flip()  
+
+class Resolution():
+    def __init__(self):
+        Resolution.__call__(self)
+
+    def __call__(self):
+        self.res = (800, 600)                                                     
     
 class Score():                                                              #TODO Game Score.
     
@@ -73,8 +80,8 @@ class GPUValue():                                                           #TOD
     def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
         self.gpu = self.gpu + 0.01
 
-
-
+pygame.font.init()
+myfont = pygame.font.SysFont("arial", 16)
 s = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
 sc = Score()
 clv = ClickValue()
