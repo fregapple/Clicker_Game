@@ -108,7 +108,6 @@ sc = Score()
 clv = ClickValue()
 gv = GPUValue()
 t = Time()
-# txs = Texts()
     
 
 
