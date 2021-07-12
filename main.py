@@ -1,8 +1,10 @@
 import pygame, sys, os
 
 from pygame.locals import *
+from config import *
 from cogs import *
 from score_updater import *
+
 
 """
 Trying to figure out how we should build the GUI.
@@ -40,7 +42,10 @@ def __main__():
                 
         
         s.tick(60)
-        Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
+
+        # Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
+        txs.ScoreText()
+
         s.refresh()
 
 __main__()
