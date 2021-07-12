@@ -100,7 +100,6 @@ class Texts():
 
     def ScoreText(self):    
         self.scoreText = Text('comic sans ms', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
-        self.scoreText
 
     def AltScoreText(self):
         self.altscoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.blue, True).altScoreText()
