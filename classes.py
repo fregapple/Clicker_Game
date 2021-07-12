@@ -2,12 +2,12 @@ import pygame, sys, os, configparser
 from pygame import HWSURFACE, DOUBLEBUF, RESIZABLE
 from pathlib import Path
 
-r = "%.2f"                                                                  # This rounds the decimal to Two.
+r = "%.2f"                                                                               # This rounds the decimal to Two.
 
 class Window():                                                                          #TODO Pygame Window settings.
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}")         # Adds caption to the Window.
-        self.res = Resolution().res                                                     # Links to Resolution Class that defines the screen size.
+        self.res = Resolution().res                                                      # Links to Resolution Class that defines the screen size.
         self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) # Sets the resolution based on self.res. 
         pygame.init()                                                                    # Initialises Pygame Window.
         self.display = 1                                                                 # Value to keep Pygame Window running.
@@ -83,8 +83,8 @@ class Text():
 
     def scoreText(self):
         self.text_rect = self.text.get_rect(center=(Resolution().sw/2, Resolution().sh/2))
-        s.screen.blit(self.text, self.text_rect)
-        s.refresh()   
+        w.screen.blit(self.text, self.text_rect)
+        w.refresh()   
 
 class Texts():
     def __init__(self):
@@ -137,7 +137,7 @@ class GPUValue():                                                           #TOD
         self.gpu = self.gpu + 0.01
 
 
-s = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
+w = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
 sc = Score()
 clv = ClickValue()
 gv = GPUValue()

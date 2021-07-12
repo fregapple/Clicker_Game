@@ -1,6 +1,6 @@
 import pygame
 
-from cogs import *
+from classes import *
 
 
 # These functions do the Math on Upgrades / Quantites..

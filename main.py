@@ -2,26 +2,21 @@ import pygame, sys, os
 
 from pygame.locals import *
 from config import *
-from cogs import *
+from classes import *
 from score_updater import *
 
 
-"""
-Trying to figure out how we should build the GUI.
-Perhaps incorperating TKinter is an option, however functional, it is quite ugly.
-"""
-
 def __main__():
 
-    while s.display == 1:
+    while w.display == 1:
 
         for x in pygame.event.get():
             if x.type == QUIT:
-                s.display = 0
+                w.display = 0
                 quit()
 
             elif x.type == VIDEORESIZE:
-                s.resize()
+                w.resize()
 
             elif x.type == MOUSEBUTTONDOWN:
                 CLICKs()
@@ -41,11 +36,11 @@ def __main__():
                 
                 
         
-        s.tick(60)
+        w.tick(60)
 
         # Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
         txs.ScoreText()
 
-        s.refresh()
+        w.refresh()
 
 __main__()
