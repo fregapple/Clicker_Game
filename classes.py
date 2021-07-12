@@ -37,6 +37,12 @@ class Window():                                                                 
     def refresh(self):                                                                  # Call this to refresh display.
         pygame.display.update() 
 
+    def textRef(self, blit):
+        pygame.display.update(blit)
+
+    def screenClear(self):
+        self.screen.fill(c.black)
+
 class Resolution():                                                         
     def __init__(self):
         Resolution.__call__(self)
@@ -83,16 +89,21 @@ class Text():
 
     def scoreText(self):
         self.text_rect = self.text.get_rect(center=(Resolution().sw/2, Resolution().sh/2))
-        w.screen.blit(self.text, self.text_rect)
-        w.refresh()   
+        
+        w.textRef(w.screen.blit(self.text, self.text_rect))   
 
+    def altScoreText(self):
+        w.textRef(w.screen.blit(self.text, (5,10)))
 class Texts():
     def __init__(self):
         pygame.font.init()
 
     def ScoreText(self):    
-        self.scoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
+        self.scoreText = Text('comic sans ms', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
         self.scoreText
+
+    def AltScoreText(self):
+        self.altscoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.blue, True).altScoreText()
 
 class Time():                                                               # Time settings for time based events.
 
@@ -101,7 +112,6 @@ class Time():                                                               # Ti
         self.timer_event = pygame.USEREVENT+1
         pygame.time.set_timer(self.timer_event, self.time_delay)
  
-
 class ClickValue():                                                         #TODO Click Value settings.
     def __init__(self):                                                     # Initialises functions to be used straight away without being called.
         ClickValue.__objectValue__(self)
@@ -137,6 +147,8 @@ class GPUValue():                                                           #TOD
         self.gpu = self.gpu + 0.01
 
 
+
+
 w = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
 sc = Score()
 clv = ClickValue()
@@ -144,6 +156,7 @@ gv = GPUValue()
 t = Time()
 c = Colours()
 txs = Texts()
+
     
 
 

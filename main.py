@@ -20,6 +20,7 @@ def __main__():
 
             elif x.type == MOUSEBUTTONDOWN:
                 CLICKs()
+                w.refresh
             
             elif x.type == KEYDOWN:
                 if x.key == K_SPACE:
@@ -32,15 +33,18 @@ def __main__():
                 GPUs()
                 
                 
+                
 
                 
                 
         
         w.tick(60)
-
+        w.screenClear()
         # Text('arial', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
         txs.ScoreText()
+        txs.AltScoreText()
 
+        
         w.refresh()
 
 __main__()
