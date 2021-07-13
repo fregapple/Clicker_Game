@@ -1,9 +1,11 @@
 import pygame, sys, os, configparser
+from loadgame import *
 from pygame import HWSURFACE, DOUBLEBUF, RESIZABLE
 from pathlib import Path
 
-r = "%.2f"                                                                               # This rounds the decimal to Two.
 
+r = "%.2f"                                                                               # This rounds the decimal to Two.
+gl = GameLoad()
 class Window():                                                                          #TODO Pygame Window settings.
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}")         # Adds caption to the Window.
@@ -45,12 +47,7 @@ class Resolution():
         Resolution.__call__(self)
 
     def __call__(self):
-        self.config = configparser.ConfigParser()
-        self.config.read("./config.txt")
-        self.ds = self.config['Display Settings']
-        self.sw = int(self.ds['resolution width'])
-        self.sh = int(self.ds['resolution height'])
-        self.res = (self.sw,self.sh)
+        self.res = (gl.sw,gl.sh)
 
 class Colours():
     def __init__(self):
@@ -65,7 +62,7 @@ class Colours():
 class Score():                                                              #TODO Game Score.
     
     def __init__(self):                                                     # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
-        self.score = 0
+        self.score = gl.score
 
     def __call__(self):                                                     # Call this to get score and refresh Window Caption to new Value.
         self.score
@@ -85,7 +82,7 @@ class Text():
         self.text = texts.render(self.text, self.antialias, self.colour, self.background)
 
     def scoreText(self):
-        self.text_rect = self.text.get_rect(center=(Resolution().sw/2, Resolution().sh/2))
+        self.text_rect = self.text.get_rect(center=(GameLoad().sw/2, GameLoad().sh/2))
         w.screen.blit(self.text, self.text_rect)   
 
     def altScoreText(self):
@@ -116,13 +113,13 @@ class Time():                                                               # Ti
 class ClickValue():                                                         #TODO Click Value settings.
     def __init__(self):                                                     # Initialises functions to be used straight away without being called.
         ClickValue.__objectValue__(self)
-        ClickValue.__upgradeQuantity__(self)
+        ClickValue.__upgradeMultiplier__(self)
     
     def __objectValue__(self):                                              # The Value of a click EG how many points it will give.
-        self.click = 1
+        self.click = gl.clickv
 
-    def __upgradeQuantity__(self):                                          # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
-        self.clicks = 1
+    def __upgradeMultiplier__(self):                                          # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
+        self.clicks = gl.clickm
 
     def clickBuy(self):                                                     # Buying extra clicks #TODO Same as above, this will probably be deleted. Instead we will use an upgrade multiplier. In for testing.
         self.click = self.click + 1
@@ -132,17 +129,17 @@ class GPUValue():                                                           #TOD
     def __init__(self):
         GPUValue.__objectValue__(self)
         GPUValue.__upgradeModifier__(self)
-        GPUValue.__upgradeQuantity__(self)       
+        GPUValue.__upgradeMultiplier__(self)       
 
     def __objectValue__(self):
-        self.gpu = 0
+        self.gpu = gl.gpuv
 
     def __upgradeModifier__(self):                                            #TODO This section could be made into it's own class to be used with every xValue().
         self.a = 3                                                          # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
         self.b = 4                                                          # If kept to individual classes, each xValue can have individual upgrade multiplier paths rather than a global one.
 
-    def __upgradeQuantity__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
-        self.gpus = 1
+    def __upgradeMultiplier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
+        self.gpus = gl.gpum
 
     def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
         self.gpu = self.gpu + 0.01
@@ -157,6 +154,7 @@ gv = GPUValue()
 t = Time()
 c = Colours()
 txs = Texts()
+
 
     
 

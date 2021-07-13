@@ -3,6 +3,8 @@ import pygame, sys, os
 from pygame.locals import *
 from config import *
 from classes import *
+from gamesave import *
+
 from score_updater import *
 
 
@@ -12,6 +14,7 @@ def __main__():
 
         for x in pygame.event.get():
             if x.type == QUIT:
+                GameSave().__call__()
                 w.display = 0
                 quit()
 
@@ -45,5 +48,4 @@ def __main__():
         txs.AltScoreText()
         
         w.refresh()
-
 __main__()
