@@ -59,12 +59,12 @@ class Colours():
         self.purple = (255,0,255)
         self.yellow = (255,255,0)
         
-class Score():                                                              #TODO Game Score.
+class Score():                                                                           #TODO Game Score.
     
-    def __init__(self):                                                     # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
+    def __init__(self):                                                                  # Initial Score upon start up. #TODO Perhaps we can have this as a saved value for if you'd like to save the game?
         self.score = gl.score
 
-    def __call__(self):                                                     # Call this to get score and refresh Window Caption to new Value.
+    def __call__(self):                                                                  # Call this to get score and refresh Window Caption to new Value.
         self.score
         pygame.display.set_caption(f"Clicker Game - Score: {r % self.score}")  
 
@@ -90,6 +90,9 @@ class Text():
     
     def welcomeText(self):
         w.screen.blit(self.text, (5,10))
+
+    def saveText(self):
+        w.screen.blit(self.text, (GameLoad().sw/3, GameLoad().sh/3))
 class Texts():
     def __init__(self):
         pygame.font.init()
@@ -103,29 +106,32 @@ class Texts():
     def WelcomeText(self):
         self.welcomeText = Text('arial', 50, f'Welcome', True, c.red, None).welcomeText()
 
-class Time():                                                               # Time settings for time based events.
+    def SaveInfo(self):
+        self.saveText = Text("terminal", 30, 'Press S to Save. Closing will also Save!', True, c.white, None).saveText()
+
+class Time():                                                                           # Time settings for time based events.
 
     def __init__(self):
         self.time_delay = 100
         self.timer_event = pygame.USEREVENT+1
         pygame.time.set_timer(self.timer_event, self.time_delay)
  
-class ClickValue():                                                         #TODO Click Value settings.
-    def __init__(self):                                                     # Initialises functions to be used straight away without being called.
+class ClickValue():                                                                     #TODO Click Value settings.
+    def __init__(self):                                                                 # Initialises functions to be used straight away without being called.
         ClickValue.__objectValue__(self)
         ClickValue.__upgradeMultiplier__(self)
     
-    def __objectValue__(self):                                              # The Value of a click EG how many points it will give.
+    def __objectValue__(self):                                                          # The Value of a click EG how many points it will give.
         self.click = gl.clickv
 
-    def __upgradeMultiplier__(self):                                          # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
+    def __upgradeMultiplier__(self):                                                    # The Modifier based on how many clickers EG if you click you get 2 if value is 2. #TODO This will probably be deleted for this Class.
         self.clicks = gl.clickm
 
-    def clickBuy(self):                                                     # Buying extra clicks #TODO Same as above, this will probably be deleted. Instead we will use an upgrade multiplier. In for testing.
+    def clickBuy(self):                                                                 # Buying extra clicks #TODO Same as above, this will probably be deleted. Instead we will use an upgrade multiplier. In for testing.
         self.click = self.click + 1
 
 
-class GPUValue():                                                           #TODO GPU Value settings. 
+class GPUValue():                                                                       #TODO GPU Value settings. 
     def __init__(self):
         GPUValue.__objectValue__(self)
         GPUValue.__upgradeModifier__(self)
@@ -134,26 +140,27 @@ class GPUValue():                                                           #TOD
     def __objectValue__(self):
         self.gpu = gl.gpuv
 
-    def __upgradeModifier__(self):                                            #TODO This section could be made into it's own class to be used with every xValue().
-        self.a = 3                                                          # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
-        self.b = 4                                                          # If kept to individual classes, each xValue can have individual upgrade multiplier paths rather than a global one.
+    def __upgradeModifier__(self):                                                      #TODO This section could be made into it's own class to be used with every xValue().
+        self.a = 3                                                                      # This currently doesn't do anything, but can be a section we use in conjunction with __upgradeModifier__. EG. gv.clicks = gv.clicks * gv.a.   
+        self.b = 4                                                                      # If kept to individual classes, each xValue can have individual upgrade multiplier paths rather than a global one.
 
-    def __upgradeMultiplier__(self):                                          #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
+    def __upgradeMultiplier__(self):                                                    #TODO Unlike Clicks, this will most likely stay as it determines how many GPUs you have.
         self.gpus = gl.gpum
 
-    def gpuBuy(self):                                                       # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
+    def gpuBuy(self):                                                                   # Buying extra GPUs. #TODO Value is set low to allow for 1 gpu to gain 1 score after 10 seconds.
         self.gpu = self.gpu + 0.01
 
 
 
 
-w = Window()                                                                # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
+w = Window()                                                                            # This section is needed for other pages to use the shortcuts effectively. #TODO ADD NEW CLASSES HERE. 
 sc = Score()
 clv = ClickValue()
 gv = GPUValue()
 t = Time()
 c = Colours()
 txs = Texts()
+
 
 
     

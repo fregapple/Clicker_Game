@@ -13,7 +13,7 @@ def __main__():
 
         for x in pygame.event.get():
             if x.type == QUIT:
-                GameSave().__call__()
+                GameSave().__call__()  # Calling this will save the game.
                 w.display = 0
                 quit()
 
@@ -30,6 +30,9 @@ def __main__():
                 elif x.key == K_LALT:
                     gv.gpuBuy()
 
+                elif x.key == K_s:
+                    GameSave().__call__()
+
             elif x.type == t.timer_event:
                 GPUs()
                 
@@ -45,6 +48,7 @@ def __main__():
         txs.WelcomeText()
         txs.ScoreText()
         txs.AltScoreText()
+        txs.SaveInfo()
         
         w.refresh()
 __main__()
