@@ -8,7 +8,7 @@ class Window():                                                                 
     def __init__(self):
         pygame.display.set_caption(f"Clicker Game - Score: {r % Score().score}")         # Adds caption to the Window.
         self.res = Resolution().res                                                      # Links to Resolution Class that defines the screen size.
-        self.screen = pygame.display.set_mode((self.res), HWSURFACE|DOUBLEBUF|RESIZABLE) # Sets the resolution based on self.res. 
+        Window.reso(self)                                                                # Sets the resolution based on self.res. 
         pygame.init()                                                                    # Initialises Pygame Window.
         self.display = 1                                                                 # Value to keep Pygame Window running.
         self.clock = pygame.time.Clock()                                                 # Sets Clock so we can have ingame timer and FPS.
@@ -36,9 +36,6 @@ class Window():                                                                 
 
     def refresh(self):                                                                  # Call this to refresh display.
         pygame.display.update() 
-
-    def textRef(self, blit):
-        pygame.display.update(blit)
 
     def screenClear(self):
         self.screen.fill(c.black)
@@ -89,20 +86,25 @@ class Text():
 
     def scoreText(self):
         self.text_rect = self.text.get_rect(center=(Resolution().sw/2, Resolution().sh/2))
-        
-        w.textRef(w.screen.blit(self.text, self.text_rect))   
+        w.screen.blit(self.text, self.text_rect)   
 
     def altScoreText(self):
-        w.textRef(w.screen.blit(self.text, (5,10)))
+        w.screen.blit(self.text, (5,10))
+    
+    def welcomeText(self):
+        w.screen.blit(self.text, (5,10))
 class Texts():
     def __init__(self):
         pygame.font.init()
 
     def ScoreText(self):    
-        self.scoreText = Text('comic sans ms', 50, f'Score - {r % sc.score}', True, c.green, False).scoreText()
+        self.scoreText = Text('comic sans ms', 50, f'Score - {r % sc.score}', True, c.green, None).scoreText()
 
     def AltScoreText(self):
-        self.altscoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.blue, True).altScoreText()
+        self.altscoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.blue, None).altScoreText()
+
+    def WelcomeText(self):
+        self.welcomeText = Text('arial', 50, f'Welcome', True, c.red, None).welcomeText()
 
 class Time():                                                               # Time settings for time based events.
 
