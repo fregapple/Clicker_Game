@@ -1,4 +1,3 @@
-from os import SEEK_CUR
 import pygame, configparser
 from loadgame import *
 from classes import *

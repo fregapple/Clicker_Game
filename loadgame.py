@@ -1,7 +1,5 @@
 
 import configparser
-from config import ConfigFile
-from pathlib import Path
 
 class GameLoad():
     def __init__(self):

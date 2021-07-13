@@ -4,7 +4,6 @@ from pygame.locals import *
 from config import *
 from classes import *
 from gamesave import *
-
 from score_updater import *
 
 
