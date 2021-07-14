@@ -55,12 +55,12 @@ class Resolution():
 class ScreenScaling():
     def __init__(self):
         ScreenScaling.Scaling(self)
-
     def Scaling(self):
         self.s = pygame.display.get_surface()
-        self.w = self.s.get_width()
-        self.h = self.s.get_height()
-        self.textsize = ((self.h + self.w)/2)
+        self.textSize = self.s.get_height()
+        
+        
+
 class Colours():
     def __init__(self):
         self.black = (0,0,0)
@@ -102,29 +102,18 @@ class Text():
     
     def welcomeText(self):
         w.screen.blit(self.text, (5,10))
-
-    def numberText(self):
-        w.screen.blit(self.text, (int(ScreenScaling().w/2), 50))
-        w.screen.blit(self.text, (int(ScreenScaling().w/2), 60))
-        w.screen.blit(self.text, (int(ScreenScaling().w/2), 70))
-        w.screen.blit(self.text, (int(ScreenScaling().w/2), 80))
-        w.screen.blit(self.text, (int(ScreenScaling().w/2), 90))
 class Texts():
+    def __init__(self):
+        pygame.font.init()
+
     def ScoreText(self):    
-        self.scoreText = Text('comic sans ms', int(50*ScreenScaling().h/768), f'Score - {r % sc.score}', True, c.green, None).scoreText()
+        self.scoreText = Text('comic sans ms', int(50*ScreenScaling().textSize/768), f'Score - {r % sc.score}', True, c.green, None).scoreText()
 
     def AltScoreText(self):
-        self.altscoreText = Text('arial', 50, f'Score - {ScreenScaling().h}', True, c.blue, None).altScoreText()
+        self.altscoreText = Text('arial', 50, f'Score - {ScreenScaling().textSize}', True, c.blue, None).altScoreText()
 
     def WelcomeText(self):
         self.welcomeText = Text('arial', 50, f'Welcome', True, c.red, None).welcomeText()
-
-class BackgroundNumbers():
-    def __init__(self):
-        BackgroundNumbers.FallingNumbers(self)
-    
-    def FallingNumbers(self):
-        self.zeroA = Text('arial', int(18*ScreenScaling().textsize/768), '0', True, (0,200,0), None).numberText()
 
 class Time():                                                               # Time settings for time based events.
 
@@ -177,7 +166,7 @@ gv = GPUValue()
 t = Time()
 c = Colours()
 txs = Texts()
-b = BackgroundNumbers()
+
     
 
 
