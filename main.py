@@ -43,7 +43,7 @@ def __main__():
         txs.WelcomeText()
         txs.ScoreText()
         txs.AltScoreText()
-        
+        b.FallingNumbers()
         w.refresh()
 
 __main__()
