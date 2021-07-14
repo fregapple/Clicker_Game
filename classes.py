@@ -52,6 +52,15 @@ class Resolution():
         self.sh = int(self.ds['resolution height'])
         self.res = (self.sw,self.sh)
 
+class ScreenScaling():
+    def __init__(self):
+        ScreenScaling.Scaling(self)
+    def Scaling(self):
+        self.s = pygame.display.get_surface()
+        self.textSize = self.s.get_height()
+        
+        
+
 class Colours():
     def __init__(self):
         self.black = (0,0,0)
@@ -98,10 +107,10 @@ class Texts():
         pygame.font.init()
 
     def ScoreText(self):    
-        self.scoreText = Text('comic sans ms', 50, f'Score - {r % sc.score}', True, c.green, None).scoreText()
+        self.scoreText = Text('comic sans ms', int(50*ScreenScaling().textSize/768), f'Score - {r % sc.score}', True, c.green, None).scoreText()
 
     def AltScoreText(self):
-        self.altscoreText = Text('arial', 50, f'Score - {r % sc.score}', True, c.blue, None).altScoreText()
+        self.altscoreText = Text('arial', 50, f'Score - {ScreenScaling().textSize}', True, c.blue, None).altScoreText()
 
     def WelcomeText(self):
         self.welcomeText = Text('arial', 50, f'Welcome', True, c.red, None).welcomeText()
