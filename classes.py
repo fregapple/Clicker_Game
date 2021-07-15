@@ -55,12 +55,13 @@ class Resolution():
 class ScreenScaling():
     def __init__(self):
         ScreenScaling.Scaling(self)
+
     def Scaling(self):
         self.s = pygame.display.get_surface()
-        self.textSize = self.s.get_height()
+        self.w = self.s.get_width()
+        self.h = self.s.get_height()
+        self.textSize = int((self.w + self.h)/2)
         
-        
-
 class Colours():
     def __init__(self):
         self.black = (0,0,0)
